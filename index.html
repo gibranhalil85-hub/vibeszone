@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIBE ZONE - Streaming Video Viral</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    body {
+      background: radial-gradient(circle at center, #121526, #08090f);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+    /* --- HALAMAN PEMBUKA --- */
+    .landing-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px 20px;
+      margin-top: 15vh;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .landing-title {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      color: #00f2fe;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+    .landing-desc {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+    .btn-continue {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(90deg, #ff007f, #ff758c);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .btn-continue:active {
+      transform: scale(0.98);
+    }
+    .loading-box {
+      display: none;
+      margin-top: 25px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 242, 254, 0.1);
+      border-top: 4px solid #00f2fe;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 10px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HALAMAN PEMBUKA -->
+    <div class="landing-box">
+      <h1 class="landing-title">VIBE ZONE HUB</h1>
+      <p class="landing-desc">click the button below to play the video</p>
+      
+      <button id="btn-start" class="btn-continue" onclick="triggerRedirect()">CONTINUE TO VIDEO</button>
+      
+      <div id="loading-box" class="loading-box">
+        <div class="spinner"></div>
+        <p style="font-size: 0.8rem; color: #00f2fe;">preparing Video High Quality...</p>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2026 VIBE ZONE HUB. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Anti Klik Kanan & Inspect Element
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // ⚠️ GANTI URL DI BAWAH INI DENGAN LINK REPOSITORY / DOMAIN HALAMAN UTAMA ANDA
+    const MAIN_PAGE_URL = "https://gibranhalil85-hub.github.io/vibezone/"; 
+    const DEFAULT_VIDEY_ID = "c89sL2uO"; 
+
+    function triggerRedirect() {
+      // Ambil parameter ?v= dari URL landing page saat ini (jika ada)
+      const urlParams = new URLSearchParams(window.location.search);
+      const videyId = urlParams.get('v') || DEFAULT_VIDEY_ID;
+
+      // Sembunyikan tombol dan tampilkan animasi loading
+      document.getElementById('btn-start').style.display = 'none';
+      document.getElementById('loading-box').style.display = 'block';
+
+      // Jeda 1 detik sebelum pindah halaman ke repository/domain utama
+      setTimeout(function() {
+        window.location.href = `${MAIN_PAGE_URL}?v=${videyId}`;
+      }, 1000);
+    }
+  </script>
+
+  <!-- HISTATS TRACKING SCRIPT (Opsional untuk halaman pembuka) -->
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var _Hasync= _Hasync|| [];
+        _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+        hs.src = ('//s10.histats.com/js15_as.js');
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
